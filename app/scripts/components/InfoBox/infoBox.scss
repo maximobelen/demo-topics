@@ -1,0 +1,11 @@
+#info-box{
+  width: 300px;
+  display: inline-table;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid #000000;
+
+  .title {
+  	margin-bottom: 30px;
+  }
+}
