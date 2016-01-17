@@ -1,5 +1,5 @@
-# topics-demo
-A demo created with React
+# demo topics
+A demo created with React.  
 A word cloud that displays the topics in the topics.json
   
 ## INSTALLATION
