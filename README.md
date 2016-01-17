@@ -1,4 +1,4 @@
-# demo topics
+# demo-topics
 A demo created with React.  
 A word cloud that displays the topics in the topics.json
   
