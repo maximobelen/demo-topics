@@ -119,16 +119,6 @@ gulp.task('watch', ['lint'], function() {
 
 gulp.task('default', ['dev', 'watch', 'connect', 'open']);
 
-
-gulp.task('test', function () {
-  return gulp.src('./test/**/*.js', { read: false })
-    .pipe(mocha({
-      compilers: {
-        js: babel
-      }
-    }));
-});
-
 // Browserify Release task
 gulp.task('browserify-release', function() {
   // Single point of entry (make sure not to src ALL your files, browserify will figure it out)

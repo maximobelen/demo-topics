@@ -17,13 +17,13 @@ var InfoBox = React.createClass({
     this.titleNode = this.container.getElementsByClassName('title')[0];
   },
 
-  update: function(info) {
-    this.updateInfo(info);
+  update: function(info, callback) {
+    this.updateInfo(info, callback);
     TweenMax.set(this.postContainer, {display:'block'});
     TweenMax.set(this.firstContainer, {display:'none'});
   },
   
-  updateInfo: function(info) {
+  updateInfo: function(info, callback) {
 
     TweenMax.to(this.titleNode, 0.4, {opacity:0, onComplete: function(){
       this.title = "'" + info.label + "'";
@@ -31,6 +31,9 @@ var InfoBox = React.createClass({
     }.bind(this)});
 
     TweenMax.to(this.titleNode, 0.4, {delay:0.4, opacity:1, onComplete: function(){
+      if(callback){
+        callback();
+      }
     }.bind(this)});
     for (var key in this.refs) {
       this.refs[key].updateValue(info[key]);
