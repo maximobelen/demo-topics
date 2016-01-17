@@ -1,5 +1,5 @@
 {
-  "name": "react-demo",
+  "name": "topics",
   "version": "1.0.0",
   "description": "A word cloud that displays the topics in the topics.json",
   "main": "./app/scripts/index.js",
