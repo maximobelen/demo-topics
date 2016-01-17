@@ -11,15 +11,16 @@ var Landing = React.createClass({
   },
 
   render: function() {  
-  	var topicChanged = this.topicChanged;
-	return (
-      <div id="landing">
-        <Header ref={'header'}></Header>
-        <TopicBox ref={'topicBox'} emitChange={topicChanged}></TopicBox>
-        <InfoBox ref={'infoBox'}></InfoBox>
-      </div>
-    );
-  }
+    var topicChanged = this.topicChanged;
+  
+  	return (
+        <div id="landing">
+          <Header ref={'header'}></Header>
+          <TopicBox ref={'topicBox'} emitChange={topicChanged}></TopicBox>
+          <InfoBox ref={'infoBox'}></InfoBox>
+        </div>
+      );
+    }
 });
 
 module.exports = Landing;

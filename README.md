@@ -1,6 +1,6 @@
 # topics
 
-Create a word cloud that displays the topics in the topics.json
+A word cloud that displays the topics in the topics.json
   
 ## INSTALLATION
 
@@ -15,6 +15,10 @@ npm install
 ### RUN DEV
 ```javascript
 gulp
+```
+### RUN TESTS
+```javascript
+npm test
 ```
 ### RELEASE
 ```javascript

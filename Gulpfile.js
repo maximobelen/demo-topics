@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     reactify = require ('reactify'),
     concat = require('gulp-concat'),
     rimraf = require('gulp-rimraf'),
+    mocha = require('mocha'),
     connect = require('gulp-connect'),
+    babel = require('babel-core/register'),
     sass = require('gulp-sass'),
     open = require('gulp-open'),
     uglify = require('gulp-uglify'),
@@ -116,6 +118,16 @@ gulp.task('watch', ['lint'], function() {
 });
 
 gulp.task('default', ['dev', 'watch', 'connect', 'open']);
+
+
+gulp.task('test', function () {
+  return gulp.src('./test/**/*.js', { read: false })
+    .pipe(mocha({
+      compilers: {
+        js: babel
+      }
+    }));
+});
 
 // Browserify Release task
 gulp.task('browserify-release', function() {

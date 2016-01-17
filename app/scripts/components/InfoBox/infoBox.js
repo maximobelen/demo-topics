@@ -18,17 +18,19 @@ var InfoBox = React.createClass({
   },
 
   update: function(info) {
-    this.updateInfo(info)
+    this.updateInfo(info);
+    TweenMax.set(this.postContainer, {display:'block'});
+    TweenMax.set(this.firstContainer, {display:'none'});
   },
   
   updateInfo: function(info) {
+
     TweenMax.to(this.titleNode, 0.4, {opacity:0, onComplete: function(){
       this.title = "'" + info.label + "'";
-      TweenMax.set(this.postContainer, {display:'block'});
-      TweenMax.set(this.firstContainer, {display:'none'});
-    }.bind(this)});
-    TweenMax.to(this.titleNode, 0.4, {delay:0.4, opacity:1, onComplete: function(){
       this.setState({content: 'full'});
+    }.bind(this)});
+
+    TweenMax.to(this.titleNode, 0.4, {delay:0.4, opacity:1, onComplete: function(){
     }.bind(this)});
     for (var key in this.refs) {
       this.refs[key].updateValue(info[key]);
