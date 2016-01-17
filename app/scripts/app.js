@@ -3,14 +3,6 @@ var Landing = require('./components/Landing/landing');
 
 var App = React.createClass({
 
-  componentDidMount: function() {
-
-  },
-
-  componentWillUnmount: function() {
-  
-  },
-
   render: function() {
     /*jshint ignore:start */
     return (
@@ -20,7 +12,6 @@ var App = React.createClass({
 
     );
     /*jshint ignore:end */
-
   }
 });
 

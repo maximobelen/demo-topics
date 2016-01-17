@@ -1,5 +1,6 @@
 module.exports = {
- 'title': 'Information on Topic',
+ 'fistMessage': 'Click on some word to see the information!',
+ 'title': 'Information on Topic ',
  'info': [
  	{
  		'ref': 'totalMentions',

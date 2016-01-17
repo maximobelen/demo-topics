@@ -20,3 +20,4 @@ gulp
 ```javascript
 gulp release
 ```
+After running this task in the folder "dist" you will have your production source 

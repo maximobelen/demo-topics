@@ -1,7 +1,6 @@
 var React = require('react');
 var model = require('./topicBox-model');
 var ReactDOM = require('react-dom');
-var TweenMax = require('gsap');
 var Topic = require('../Topic/topic');
 
 var TopicBox = React.createClass({
@@ -28,12 +27,17 @@ var TopicBox = React.createClass({
   	return ranges;
   },
 
+  handleMouseDown: function(topic) {
+    this.props.emitChange(topic);
+  },
+
   componentDidMount: function() {
     this.container = ReactDOM.findDOMNode(this);
   },
 
   render: function() {
   	var ranges = this.createSizeRanges();
+    var handleMouseDown =  this.handleMouseDown;
     return (
         <div id="topic-box">       
 		{model.topics.map(function(object, i){
@@ -45,8 +49,10 @@ var TopicBox = React.createClass({
 
 			return <Topic 
 				ref={'topic'+i}
+        clickUpdate={handleMouseDown}
 				label={object.label}
 				size={object.size}
+        volume={object.volume}
 				sentiment={object.sentiment}
 				sentimentScore={object.sentimentScore}
 				key={i}/>;

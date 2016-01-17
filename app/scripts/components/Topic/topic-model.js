@@ -9,7 +9,7 @@ module.exports = {
 			'value': 60
 		}, 	
 		'default': {
-			'color': '#eeeeee',
+			'color': '#969696',
 		} 	
 	}
 };

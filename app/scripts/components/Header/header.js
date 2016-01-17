@@ -1,7 +1,5 @@
 var React = require('react');
 var model = require('./header-model');
-var ReactDOM = require('react-dom');
-var TweenMax = require('gsap');
 
 var Header = React.createClass({
     

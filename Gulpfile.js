@@ -9,12 +9,17 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     sass = require('gulp-sass'),
     open = require('gulp-open'),
+    uglify = require('gulp-uglify'),
+    minifyCss = require('gulp-minify-css'),
     autoprefixer = require('gulp-autoprefixer');
 
 var serverPort = 8000;
 
 // Dev task
 gulp.task('dev', ['clean', 'copy', 'views', 'styles', 'lint', 'browserify'], function() { });
+
+// Release task
+gulp.task('release', ['clean', 'copy-release', 'views', 'styles-release', 'lint', 'browserify-release'], function() { });
 
 // Clean task
 gulp.task('clean', function() {
@@ -111,3 +116,41 @@ gulp.task('watch', ['lint'], function() {
 });
 
 gulp.task('default', ['dev', 'watch', 'connect', 'open']);
+
+// Browserify Release task
+gulp.task('browserify-release', function() {
+  // Single point of entry (make sure not to src ALL your files, browserify will figure it out)
+  gulp.src(['app/scripts/index.js'])
+  .pipe(browserify({
+    insertGlobals: true,
+    debug: false,
+    transform: [reactify]
+  }))
+  // Bundle to a single file
+  .pipe(concat('bundle.js'))
+  .pipe(uglify())
+  // Output it to our dist folder
+  .pipe(gulp.dest('dist/js'))
+  .pipe(connect.reload());
+});
+
+// Styles Release task
+gulp.task('styles-release', function() {
+  gulp.src('app/styles/main.scss')
+  // The onerror handler prevents Gulp from crashing when you make a mistake in your SASS
+  .pipe(sass({onError: function(e) { console.log(e); } }))
+  // Optionally add autoprefixer
+  .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 8'))
+  .pipe(minifyCss())
+  // These last two should look familiar now :)
+  .pipe(gulp.dest('dist/css/'))
+  .pipe(connect.reload());
+});
+
+// Copy assets Release task
+gulp.task('copy-release', function() {
+  gulp.src('app/assets/**/*.*')
+  .pipe(gulp.dest('dist/assets/'));
+});
+
+// END RELEASE TASKS

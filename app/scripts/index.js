@@ -1,4 +1,3 @@
-var React = require('react');
 var ReactDOM = require('react-dom');
 var domready = require('domready');
 var App = require('./app.js');

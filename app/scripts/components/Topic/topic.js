@@ -4,6 +4,30 @@ var ReactDOM = require('react-dom');
 var TweenMax = require('gsap');
 
 var Topic = React.createClass({
+  getInitialState: function() {
+    return {status: 'idle'};
+  },
+
+  handleMouseEnter: function() {
+    this.setState({status: 'hover'});
+    TweenMax.to(this.container, 0.2, { opacity: 0.4, scale: 1.1, ease: Expo.easeOut});
+  },
+  
+  handleMouseLeave: function() {
+    this.setState({status: 'idle'});
+    TweenMax.to(this.container, 0.2, { opacity: 1,  scale: 1, ease: Expo.easeOut});
+  },
+
+  handleMouseDown: function(){
+    var object =  {
+      'totalMentions': this.props.volume,
+      'positiveMentions': this.props.sentiment.positive,
+      'neutralMentions': this.props.sentiment.neutral,
+      'negativeMentions': this.props.sentiment.negative,
+      'label': this.props.label
+    };
+    this.props.clickUpdate(object);
+  },
 
   setStyle: function(){
     this.setColor(model.style);
@@ -23,15 +47,10 @@ var Topic = React.createClass({
     }
 
     this.container.style.color = color;
-
   },
-  handleMouseDown: function(){
-    console.log('mouse down!!');
 
-  },
   setSize: function(size){
     this.container.style.fontSize = size;
-
   },
 
   componentDidMount: function() {
@@ -41,9 +60,12 @@ var Topic = React.createClass({
 
   render: function() {
     return (
-      <span className="topic" onMouseDown={this.handleMouseDown}>
-      {this.props.label}
-      </span>
+      <div className="topic-container">
+        <span className="topic" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onMouseDown={this.handleMouseDown}>
+          {this.props.label}
+        </span>
+        <div className="underline"></div>
+      </div>
     );
   }
 });
